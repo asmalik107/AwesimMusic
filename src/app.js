@@ -3,8 +3,13 @@ import React,{
     StyleSheet,
     View,
     Text,
-    TabBarIOS
+    TabBarIOS,
+    Navigator
 } from 'react-native';
+
+import Icon  from 'react-native-vector-icons/Ionicons';
+import Constants from './app-constants';
+import Routes from './routes/routes.js';
 
 
 class App extends Component {
@@ -12,8 +17,10 @@ class App extends Component {
         super();
 
         this.state = {
-            selectedTab: 'releases'
-        }
+            selectedTab: Constants.RELEASES
+        };
+
+        this.renderScene = this.renderScene.bind(this);
     }
 
 
@@ -21,30 +28,49 @@ class App extends Component {
         this.setState({selectedTab: tabId});
     }
 
+
+    renderScene(route, navigator) {
+        var Component = route.component;
+        return <Component route={route} navigator={navigator}/>;
+    }
+
+    renderView() {
+        return (
+            <Navigator
+                initialRoute={Routes.newReleases}
+            renderScene={this.renderScene}
+            configureScene={() => {return Navigator.SceneConfigs.FloatFromRight;}}
+            />
+        );
+    }
+
     render() {
         return (
             <TabBarIOS>
-                <TabBarIOS.Item
-                    title="New Releases"
-                    selected={this.state.selectedTab === 'releases'}
-                    onPress={() => this.setSelectedTab('releases')}
+                <Icon.TabBarItemIOS
+                    title={Constants.NEW_RELEASES}
+                    iconName='ios-home-outline'
+                    selected={this.state.selectedTab === Constants.RELEASES}
+                    onPress={() => this.setSelectedTab(Constants.RELEASES)}
+                >
+                    {this.renderView()}
+                </Icon.TabBarItemIOS>
+                <Icon.TabBarItemIOS
+                    title={Constants.PLAYLISTS}
+                    iconName='ios-list-outline'
+                    selected={this.state.selectedTab === Constants.PLAYLISTS}
+                    onPress={() => this.setSelectedTab(Constants.PLAYLISTS)}
                 >
                     <Text>Test1</Text>
-                </TabBarIOS.Item>
-                <TabBarIOS.Item
-                    title="PlayLists"
-                    selected={this.state.selectedTab === 'playlists'}
-                    onPress={() => this.setSelectedTab('playlists')}
-                >
-                    <Text>Test1</Text>
-                </TabBarIOS.Item>
-                <TabBarIOS.Item
-                    title="Settings"
-                    selected={this.state.selectedTab === 'settings'}
-                    onPress={() => this.setSelectedTab('settings')}
+                </Icon.TabBarItemIOS>
+                <Icon.TabBarItemIOS
+                    title={Constants.SETTINGS}
+                    iconName='ios-gear-outline'
+                    selected={this.state.selectedTab === Constants.SETTINGS}
+                    onPress={() => this.setSelectedTab(Constants.SETTINGS)}
                 >
                     <Text>Test2</Text>
-                </TabBarIOS.Item>
+                </Icon.TabBarItemIOS>
             </TabBarIOS>
         );
     }
