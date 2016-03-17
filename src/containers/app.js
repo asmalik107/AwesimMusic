@@ -7,10 +7,9 @@ import React,{
     Navigator
 } from 'react-native';
 
-import Icon  from 'react-native-vector-icons/Ionicons';
-import Constants from './app-constants';
-import Routes from './routes/routes.js';
-
+import Icon  from '../../node_modules/react-native-vector-icons/Ionicons';
+import Constants from './../app-constants';
+import Routes from './../routes/routes.js';
 
 class App extends Component {
     constructor() {
@@ -64,6 +63,14 @@ class App extends Component {
                     <Text>Test1</Text>
                 </Icon.TabBarItemIOS>
                 <Icon.TabBarItemIOS
+                    title={Constants.SEARCH}
+                    iconName='ios-search'
+                    selected={this.state.selectedTab === Constants.SEARCH}
+                    onPress={() => this.setSelectedTab(Constants.SEARCH)}
+                >
+                    <Text>Search</Text>
+                </Icon.TabBarItemIOS>
+                <Icon.TabBarItemIOS
                     title={Constants.SETTINGS}
                     iconName='ios-gear-outline'
                     selected={this.state.selectedTab === Constants.SETTINGS}
@@ -86,4 +93,4 @@ const styles = StyleSheet.create({
     }
 });
 
-module.exports = App;
+export default App;

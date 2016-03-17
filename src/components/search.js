@@ -6,7 +6,7 @@ import React, {
 } from 'react-native';
 
 
-class Playlists extends Component {
+class Search extends Component {
     constructor() {
         super();
     }
@@ -14,7 +14,7 @@ class Playlists extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>Playlists</Text>
+                <Text>Search</Text>
             </View>
         );
     }
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Playlists;
+export default Search;

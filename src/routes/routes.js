@@ -1,9 +1,10 @@
 import Constants from '../app-constants';
 
 
-import Playlists from '../components/playlists';
-import Releases from '../components/releases';
-import Settings from '../components/settings';
+import Playlists from '../containers/playlistsPage';
+import Releases from '../containers/releasesPage';
+import Search from '../components/search';
+import Settings from '../containers/settingsPage';
 
 var Routes = {
     newReleases: {
@@ -14,6 +15,10 @@ var Routes = {
         title: Constants.PLAYLISTS,
         component: Playlists
     },
+    search: {
+        title: Constants.SEARCH,
+        component: Search
+    },
     settings: {
         title: Constants.SETTINGS,
         component: Settings
@@ -21,5 +26,4 @@ var Routes = {
 
 };
 
-
-module.exports = Routes;
+export default Routes;

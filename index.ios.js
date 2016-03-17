@@ -4,6 +4,6 @@ import React, {
   AppRegistry
 } from 'react-native';
 
-import App from './src/app.js';
+import Root from './src/root.js';
 
-AppRegistry.registerComponent('AwesimMusic', () => App);
+AppRegistry.registerComponent('AwesimMusic', () => Root);

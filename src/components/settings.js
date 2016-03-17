@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
     }
 });
 
-module.exports = Settings;
+export default Settings;

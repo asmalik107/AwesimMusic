@@ -1,0 +1,1 @@
+export const FETCH_NEW_RELEASES = 'FETCH_NEW_RELEASES';
