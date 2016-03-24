@@ -3,27 +3,41 @@
 import Constants from '../app-constants';
 
 
+import Login from '../components/login';
 import Playlists from '../containers/playlistsPage';
 import Releases from '../containers/releasesPage';
 import Search from '../components/search';
 import Settings from '../containers/settingsPage';
 
 var Routes = {
-    newReleases: {
+    login: {
+        key: Constants.LOGIN,
+        title: Constants.LOGIN,
+        component: Login
+    },
+    releases: {
+        key: Constants.NEW_RELEASES,
         title: Constants.NEW_RELEASES,
-        component: Releases
+        component: Releases,
+        icon: 'ios-home-outline'
     },
     playlists: {
+        key: Constants.PLAYLISTS,
         title: Constants.PLAYLISTS,
-        component: Playlists
+        component: Playlists,
+        icon:'ios-list-outline'
     },
     search: {
+        key: Constants.SEARCH,
         title: Constants.SEARCH,
-        component: Search
+        component: Search,
+        icon:'ios-search'
     },
     settings: {
+        key: Constants.SETTINGS,
         title: Constants.SETTINGS,
-        component: Settings
+        component: Settings,
+        icon: 'ios-gear-outline'
     }
 
 };
