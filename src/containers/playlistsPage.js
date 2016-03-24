@@ -6,6 +6,7 @@ import React, {
 } from 'react-native';
 
 import Playlists from '../components/playlists';
+import {fetchPlaylists} from '../actions';
 
 
 class PlaylistsPage extends Component {
@@ -17,6 +18,10 @@ class PlaylistsPage extends Component {
         return (
             <Playlists />
         );
+    }
+
+    componentDidMount() {
+        dispatch(fetchPlaylists());
     }
 
 }

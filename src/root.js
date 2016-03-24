@@ -10,8 +10,7 @@ import rootReducer from './reducers';
 import App from './containers/app';
 
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const store = createStoreWithMiddleware(rootReducer);
+const store = applyMiddleware(thunk)(createStore)(rootReducer);
 
 
 export default class Root extends Component{

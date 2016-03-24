@@ -18,6 +18,7 @@ class Playlists extends Component {
             </View>
         );
     }
+    
 
 }
 
