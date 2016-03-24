@@ -1,3 +1,5 @@
+'use strict';
+
 import React, {
     Component,
     StyleSheet,
@@ -6,7 +8,6 @@ import React, {
 } from 'react-native';
 
 import Playlists from '../components/playlists';
-import {fetchPlaylists} from '../actions';
 
 
 class PlaylistsPage extends Component {
@@ -16,15 +17,12 @@ class PlaylistsPage extends Component {
 
     render() {
         return (
-            <Playlists />
+            <Playlists/>
         );
     }
 
-    componentDidMount() {
-        dispatch(fetchPlaylists());
-    }
-
 }
+
 
 
 export default PlaylistsPage;

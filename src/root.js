@@ -1,3 +1,5 @@
+'use strict';
+
 import React, {Component} from 'react-native';
 
 import { createStore, applyMiddleware } from 'redux';

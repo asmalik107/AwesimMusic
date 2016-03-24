@@ -1,22 +1,23 @@
+'use strict';
+
 import * as types from '../actions/actionTypes';
 
 import {combineReducers} from 'redux';
 
 
-
-function counter(state = 0, action) {
-    switch (action.type) {
-        case 'INCREMENT':
-            return state + 1
-        case 'DECREMENT':
-            return state - 1
+function newReleases(state = {
+    albums:[]
+}, action) {
+    switch (action.type){
+        case types.RECEIVE_NEW_RELEASES:
+            return Object.assign({}, state, {albums: action.albums.items});
         default:
-            return state
+            return state;
     }
 }
 
 const rootReducer = combineReducers({
-    counter
+    newReleases
 });
 
 export default rootReducer;

@@ -1,4 +1,6 @@
-import React,{
+'use strict';
+
+import React, {
     Component,
     StyleSheet,
     View,
@@ -11,9 +13,27 @@ import Icon  from '../../node_modules/react-native-vector-icons/Ionicons';
 import Constants from './../app-constants';
 import Routes from './../routes/routes.js';
 
+var NavigationBarRouteMapper = {
+    LeftButton: function (route, navigator, index, navState) {
+        return (
+            <Text style={styles.navbarTitle}>{ route.leftButton }</Text>
+        )
+    },
+    Title: function (route, navigator, index, navState) {
+        return (
+            <Text style={styles.navbarTitle}>{ route.title }</Text>
+        )
+    },
+    RightButton: function (route, navigator, index, navState) {
+        return (
+            <Text style={styles.navbarTitle}>{ route.rightButton }</Text>
+        )
+    }
+}
+
 class App extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             selectedTab: Constants.RELEASES
@@ -30,15 +50,21 @@ class App extends Component {
 
     renderScene(route, navigator) {
         var Component = route.component;
-        return <Component route={route} navigator={navigator}/>;
+        return <Component title={route.title} route={route} navigator={navigator}/>;
     }
 
     renderView() {
         return (
             <Navigator
                 initialRoute={Routes.newReleases}
-            renderScene={this.renderScene}
-            configureScene={() => {return Navigator.SceneConfigs.FloatFromRight;}}
+                renderScene={this.renderScene}
+                configureScene={() => {return Navigator.SceneConfigs.FloatFromRight;}}
+                navigationBar={
+              <Navigator.NavigationBar
+                routeMapper={ NavigationBarRouteMapper }
+                style={styles.navbar}
+              />
+        }
             />
         );
     }
@@ -85,11 +111,16 @@ class App extends Component {
 
 
 const styles = StyleSheet.create({
-    container: {
+/*    scene: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-
+        paddingTop: 50,
+        backgroundColor:'yellow'
+    },*/
+    navbar:{
+        backgroundColor: '#121314'
+    },
+    navbarTitle : {
+        color:'#dfe0e6'
     }
 });
 
