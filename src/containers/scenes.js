@@ -8,6 +8,7 @@ import TabIcon from '../components/tabIcon';
 
 import Routes from '../routes/routes';
 
+const album = Routes.album;
 const login = Routes.login;
 const releases = Routes.releases;
 const playlists = Routes.playlists;
@@ -32,8 +33,11 @@ const scenes = Actions.create(
         <Scene key={login.key} title={login.title} component={login.component} />
         <Scene key={Constants.TABBAR} tabs={true} default={releases.key} initial={true}
                tabBarStyle={styles.tabbar} >
-            <Scene key={releases.key} title={releases.title} icon={TabIcon} component={releases.component}
-                   navigationBarStyle={styles.navbar} titleStyle={styles.navbarTitle} routeInfo={releases}>
+            <Scene key='tab1' title={releases.title} icon={TabIcon} routeInfo={releases}
+                   navigationBarStyle={styles.navbar} titleStyle={styles.navbarTitle} >
+                <Scene key={releases.key} component={releases.component} title={releases.title}
+                       component={releases.component}/>
+                <Scene key={album.key} component={album.component} title={album.title}/>
             </Scene>
             <Scene key={playlists.key} title={playlists.title} icon={TabIcon} component={playlists.component}
                    navigationBarStyle={styles.navbar} titleStyle={styles.navbarTitle} routeInfo={playlists}>

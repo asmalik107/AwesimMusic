@@ -31,3 +31,18 @@ export function fetchReleases() {
             });
     }
 }
+
+
+export function fetchAlbum(id){
+    return dispatch => {
+        return fetch('http://localhost:8889/album/' + id)
+            .then(response => response.json())
+            .then(json => {
+                console.log(json);
+                dispatch(receiveAlbum(json));
+            })
+            .catch(err => {
+                console.log('error', err);
+            });
+    }
+}

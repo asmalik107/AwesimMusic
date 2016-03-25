@@ -3,6 +3,7 @@
 import Constants from '../app-constants';
 
 
+import Album from '../containers/albumPage';
 import Login from '../components/login';
 import Playlists from '../containers/playlistsPage';
 import Releases from '../containers/releasesPage';
@@ -10,6 +11,11 @@ import Search from '../components/search';
 import Settings from '../containers/settingsPage';
 
 var Routes = {
+    album: {
+        key: Constants.ALBUM,
+        title: Constants.ALBUM,
+        component: Album
+    },
     login: {
         key: Constants.LOGIN,
         title: Constants.LOGIN,

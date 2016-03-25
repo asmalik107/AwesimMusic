@@ -1,6 +1,7 @@
 'use strict';
 
 export default  {
+    ALBUM:'Album',
     LOGIN: 'Login',
     NEW_RELEASES : 'New Releases',
     PLAYLISTS:'PlayLists',

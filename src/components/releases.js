@@ -5,9 +5,14 @@ import React, {
     StyleSheet,
     Image,
     ListView,
+    RecyclerViewBackedScrollView,
     Text,
+    TouchableHighlight,
     View
 } from 'react-native';
+
+import {Actions} from 'react-native-router-flux';
+import Constants from '../app-constants';
 
 
 class Releases extends Component {
@@ -20,24 +25,37 @@ class Releases extends Component {
             dataSource: dataSource.cloneWithRows(this.props.albums)
         };
 
-        this.renderRow.bind(this);
+        this.renderRow = this.renderRow.bind(this);
+        this.rowPressed = this.rowPressed.bind(this);
+    }
+
+    rowPressed(rowData) {
+        Actions[Constants.ALBUM]({data: rowData});
     }
 
     renderRow(rowData, sectionID, rowID) {
-        console.log(rowData);
+        console.log(rowData, this);
 
         return (
-
-            <View style={styles.row}>
-                <Image
-                    style={styles.logo}
-                    source={{uri: rowData.images[1].url}}
-                />
-                <Text>{rowData.name}</Text>
-            </View>
-
+            <TouchableHighlight onPress={() => this.rowPressed(rowData)}
+                                underlayColor='#dddddd'>
+                <View >
+                    <View style={styles.row}>
+                        <Image
+                            style={{width: 100, height: 100}}
+                            source={{uri: rowData.images[1].url}}
+                        />
+                        <View>
+                            <Text>{rowData.name}</Text>
+                        </View>
+                    </View>
+                    <View style={styles.separator}/>
+                </View>
+            </TouchableHighlight>
         );
     }
+
+
 
     componentWillReceiveProps(nextProps) {
         this.setState({
@@ -52,9 +70,10 @@ class Releases extends Component {
              <Text>{this.props.albums}</Text>
              </View>*/
 
-            <ListView style={styles.container}
+            <ListView contentContainerStyle={styles.container}
                       dataSource={this.state.dataSource}
                       renderRow={this.renderRow}
+                      //renderScrollComponent={props => <RecyclerViewBackedScrollView {...props} />}
             />
         );
     }
@@ -64,15 +83,25 @@ class Releases extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        paddingTop: 40
+        //flex: 1,
+        paddingTop: 60,
+        justifyContent: 'center',
+        flexDirection: 'row',
+        flexWrap: 'wrap'
     },
     row: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        padding: 10,
-        backgroundColor: '#F6F6F6',
-    }
+        /*        flexDirection: 'row',
+         padding: 10,
+         backgroundColor: '#F6F6F6'*/
+        backgroundColor: '#CCC',
+        margin: 10,
+        width: 150,
+        height: 150
+    },
+    separator: {
+        height: 1,
+        backgroundColor: '#dddddd'
+    },
 });
 
 export default Releases;

@@ -82,4 +82,18 @@ app.get('/new-releases', function (req, res) {
         });
 });
 
+
+app.get('/album/:id', function(req, res){
+    spotifyApi.getAlbum(req.params.id)
+        .then((data) => {
+            console.log(data.body);
+            res.send(data.body);
+        })
+        .catch((err) => {
+            console.log("Something went wrong!", err);
+            res.status(err.code);
+            res.send(err.message);
+        });
+});
+
 app.listen(process.env.PORT || 8889);
