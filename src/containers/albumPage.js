@@ -7,34 +7,26 @@ import React, {
     View
 } from 'react-native';
 
-import { connect } from 'react-redux';
-import Releases from '../components/releases';
-//import {fetchAlbum} from '../actions';
-
+import {connect} from 'react-redux';
+import Album from '../components/album';
+import {fetchAlbum} from '../actions';
 
 
 class AlbumPage extends Component {
     constructor(props) {
         super(props);
-
     }
 
     componentDidMount() {
-        //this.props.dispatch(fetchReleases());
-        console.log('Albums', this.props);
+        this.props.dispatch(fetchAlbum(this.props.id));
     }
 
     render() {
         return (
-            //<Releases albums={this.props.albums}/>
-            <View>
-                <Text>Album</Text>
-            </View>
+            <Album {...this.props}/>
         );
     }
-
 }
-
 
 const styles = StyleSheet.create({
     container: {
@@ -44,9 +36,11 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-
     return {
-        //albums: state.newReleases.albums
+        name: state.album.name,
+        image: state.album.image,
+        tracks: state.album.tracks,
+        artist:state.album.artist
     };
 }
 

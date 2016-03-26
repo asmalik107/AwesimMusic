@@ -23,7 +23,6 @@ export function fetchReleases() {
         return fetch('http://localhost:8889/new-releases')
             .then(response => response.json())
             .then(json => {
-                console.log(json);
                 dispatch(receiveReleases(json));
             })
             .catch(err => {
@@ -32,6 +31,14 @@ export function fetchReleases() {
     }
 }
 
+
+function receiveAlbum(json) {
+    return {
+        type: types.RECEIVE_ALBUM,
+        album: json,//json.data.children.map(child => child.data),
+        receivedAt: Date.now()
+    }
+}
 
 export function fetchAlbum(id){
     return dispatch => {

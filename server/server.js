@@ -96,4 +96,31 @@ app.get('/album/:id', function(req, res){
         });
 });
 
+app.get('/album/:id/tracks', function(req, res){
+    spotifyApi.getAlbumTracks(req.params.id)
+        .then((data) => {
+            console.log(data.body);
+            res.send(data.body);
+        })
+        .catch((err) => {
+            console.log("Something went wrong!", err);
+            res.status(err.code);
+            res.send(err.message);
+        });
+});
+
+app.get('/playlists', function(req, res){
+    spotifyApi.getUserPlaylists(req.params.id)
+        .then((data) => {
+            console.log(data.body);
+            res.send(data.body);
+        })
+        .catch((err) => {
+            console.log("Something went wrong!", err);
+            res.status(err.code);
+            res.send(err.message);
+        });
+});
+
+
 app.listen(process.env.PORT || 8889);

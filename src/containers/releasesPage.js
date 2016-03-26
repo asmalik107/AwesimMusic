@@ -25,7 +25,7 @@ class ReleasesPage extends Component {
 
     render() {
         return (
-            <Releases albums={this.props.albums}/>
+            <Releases albums={this.props.albums} />
         );
     }
 
