@@ -34,9 +34,38 @@ function album(state = {
     }
 }
 
+function playlists(state = {
+    playlists: []
+}, action) {
+    switch (action.type) {
+        case types.RECEIVE_PLAYLISTS:
+            return Object.assign({}, state, {
+                playlists: action.playlists
+            });
+        default:
+            return state;
+    }
+}
+
+
+function users(state = {
+    users: {}
+}, action) {
+    switch (action.type) {
+        case types.RECEIVE_USERS:
+            return Object.assign({}, state, {
+                users: action.users
+            });
+        default:
+            return state;
+    }
+}
+
 const rootReducer = combineReducers({
     newReleases,
-    album
+    album,
+    playlists,
+    users
 });
 
 export default rootReducer;

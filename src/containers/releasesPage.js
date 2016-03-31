@@ -35,8 +35,7 @@ class ReleasesPage extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingTop: 50,
-        backgroundColor: 'yellow'
+        paddingTop: 50
     }
 });
 

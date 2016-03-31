@@ -30,23 +30,25 @@ const styles = StyleSheet.create({
 
 const scenes = Actions.create(
     <Scene key={Constants.ROOT} hideNavBar={true} >
-        <Scene key={login.key} title={login.title} component={login.component} />
-        <Scene key={Constants.TABBAR} tabs={true} default={releases.key} initial={true}
+        <Scene key={login.key} title={login.title} component={login.component} initial={true} />
+        <Scene key={Constants.TABBAR} tabs={true} default={releases.key} initial={false}
                tabBarStyle={styles.tabbar} >
-            <Scene key='tab1' title={releases.title} icon={TabIcon} routeInfo={releases}
+            <Scene key='tab1' title={releases.title} icon={TabIcon} iconName={releases.icon}
                    navigationBarStyle={styles.navbar} titleStyle={styles.navbarTitle} >
                 <Scene key={releases.key} component={releases.component} title={releases.title}
                        component={releases.component}/>
                 <Scene key={album.key} component={album.component} title={album.title}/>
             </Scene>
-            <Scene key={playlists.key} title={playlists.title} icon={TabIcon} component={playlists.component}
-                   navigationBarStyle={styles.navbar} titleStyle={styles.navbarTitle} routeInfo={playlists}>
+            <Scene key='tab2' title={playlists.title} icon={TabIcon}
+                   navigationBarStyle={styles.navbar} titleStyle={styles.navbarTitle} iconName={playlists.icon}>
+                <Scene key={playlists.key} component={playlists.component} title={playlists.title}
+                       component={playlists.component}/>
             </Scene>
             <Scene key={search.key} title={search.title} icon={TabIcon} component={search.component}
-                   navigationBarStyle={styles.navbar} titleStyle={styles.navbarTitle} routeInfo={search}>
+                   navigationBarStyle={styles.navbar} titleStyle={styles.navbarTitle} iconName={search.icon}>
             </Scene>
             <Scene key={settings.key} title={settings.title} icon={TabIcon} component={settings.component}
-                   navigationBarStyle={styles.navbar} titleStyle={styles.navbarTitle} routeInfo={settings}>
+                   navigationBarStyle={styles.navbar} titleStyle={styles.navbarTitle} iconName={settings.icon}>
             </Scene>
         </Scene>
     </Scene>

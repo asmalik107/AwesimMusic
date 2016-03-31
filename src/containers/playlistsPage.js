@@ -7,22 +7,34 @@ import React, {
     View
 } from 'react-native';
 
+import { connect } from 'react-redux';
+import {fetchPlaylists} from '../actions';
 import Playlists from '../components/playlists';
 
 
 class PlaylistsPage extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+    }
+
+    componentDidMount() {
+        this.props.dispatch(fetchPlaylists());
     }
 
     render() {
         return (
-            <Playlists/>
+            <Playlists playlists={this.props.playlists} />
         );
     }
 
 }
 
 
+function mapStateToProps(state) {
 
-export default PlaylistsPage;
+    return {
+        playlists: state.playlists.playlists
+    };
+}
+
+export default connect(mapStateToProps)(PlaylistsPage);

@@ -38,21 +38,18 @@ class Releases extends Component {
             <TouchableHighlight onPress={() => this.rowPressed(rowData.id)}
                                 underlayColor='#dddddd'>
                 <View >
-                    <View style={styles.row}>
-                        <Image
-                            style={{width: 100, height: 100}}
-                            source={{uri: rowData.images[1].url}}
-                        />
-                        <View>
-                            <Text>{rowData.name}</Text>
-                        </View>
-                    </View>
+                    <Image style={[styles.row]}
+                           source={{uri: rowData.images[1].url}}
+                    >
+
+                        <Text style={styles.label}>{rowData.name}</Text>
+
+                    </Image>
                     <View style={styles.separator}/>
                 </View>
             </TouchableHighlight>
         );
     }
-
 
 
     componentWillReceiveProps(nextProps) {
@@ -64,14 +61,10 @@ class Releases extends Component {
 
     render() {
         return (
-            /*  <View style={styles.container}>
-             <Text>{this.props.albums}</Text>
-             </View>*/
-
             <ListView contentContainerStyle={styles.container}
                       dataSource={this.state.dataSource}
                       renderRow={this.renderRow}
-                      //renderScrollComponent={props => <RecyclerViewBackedScrollView {...props} />}
+                //renderScrollComponent={props => <RecyclerViewBackedScrollView {...props} />}
             />
         );
     }
@@ -86,12 +79,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
         flexWrap: 'wrap'
+        //alignItems:'stretch'
     },
     row: {
-        /*        flexDirection: 'row',
-         padding: 10,
-         backgroundColor: '#F6F6F6'*/
-        backgroundColor: '#CCC',
         margin: 10,
         width: 150,
         height: 150
@@ -100,6 +90,10 @@ const styles = StyleSheet.create({
         height: 1,
         backgroundColor: '#dddddd'
     },
+    label: {
+        color: 'white',
+        marginBottom:2
+    }
 });
 
 export default Releases;
