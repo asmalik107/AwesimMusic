@@ -6,8 +6,9 @@ import Constants from './../app-constants';
 import TabIcon from '../components/tabIcon';
 
 
-import Routes from '../routes/routes';
+import Routes from './routes';
 
+const app = Routes.app;
 const album = Routes.album;
 const login = Routes.login;
 const releases = Routes.releases;
@@ -30,9 +31,10 @@ const styles = StyleSheet.create({
 
 const scenes = Actions.create(
     <Scene key={Constants.ROOT} hideNavBar={true} >
-        <Scene key={login.key} title={login.title} component={login.component} initial={true} />
+        <Scene key={app.key} title={app.title} component={app.component} initial={true} />
+        <Scene key={login.key} title={login.title} component={login.component} type='replace' />
         <Scene key={Constants.TABBAR} tabs={true} default={releases.key} initial={false}
-               tabBarStyle={styles.tabbar} >
+               tabBarStyle={styles.tabbar} type='replace'>
             <Scene key='tab1' title={releases.title} icon={TabIcon} iconName={releases.icon}
                    navigationBarStyle={styles.navbar} titleStyle={styles.navbarTitle} >
                 <Scene key={releases.key} component={releases.component} title={releases.title}

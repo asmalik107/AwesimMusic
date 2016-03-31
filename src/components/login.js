@@ -5,13 +5,15 @@ import React, {
     Image,
     StyleSheet,
     TouchableOpacity,
-    TouchableHighlight,
     Linking,
     Text,
     View
 } from 'react-native';
 
 import qs from 'shitty-qs';
+import store from 'react-native-simple-store';
+import {Actions} from 'react-native-router-flux';
+import Constants from '../app-constants';
 import Config from '../config';
 
 class Login extends Component {
@@ -19,14 +21,14 @@ class Login extends Component {
         super();
         this._onPressButton = this._onPressButton.bind(this);
     }
-
+    
 
     auth() {
         Linking.openURL([
             'https://accounts.spotify.com/authorize?',
             'client_id=' + Config.ids.clientId,
             '&response_type=token',
-            '&redirect_uri='+ Config.ids.redirectUri,
+            '&redirect_uri=' + Config.ids.redirectUri,
             '&scope=user-read-private%20user-read-email',
             '&state=state'
 
@@ -35,20 +37,25 @@ class Login extends Component {
         function handleUrl(event) {
             console.log(event.url);
             const url = event.url;
-            const queryString = url.substring(url.indexOf('?') + 1);
+
+            var [,queryString]  = event.url.match(/\#(.*)/);
             const query = qs(queryString);
 
             Linking.removeEventListener('url', handleUrl);
 
+            store.save('AwesimMusic', {
+                accessToken: query.access_token
+            });
+
             console.log(query.access_token);
+
+            Actions[Constants.TABBAR]();
         }
 
         Linking.addEventListener('url', handleUrl);
-
     }
 
     _onPressButton() {
-        console.log('pressed');
         this.auth();
     }
 
